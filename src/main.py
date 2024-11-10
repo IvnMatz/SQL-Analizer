@@ -3,16 +3,14 @@ from readF import genTables, getFile
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def index():
-    return render_template('index.html')
-
-@app.route("/sql/<fileN>")
-def file(fileN):
-    file = getFile(fileN)
-
-    tables = genTables(file)
-    return render_template('file.html', sqlData=tables)
+    if request.method == 'POST':
+        file = request.form['filename']
+        Nfile = getFile(file)
+        tables = genTables(Nfile)
+        return render_template('index.html', sqlData=tables)
+    return render_template('index.html', sqlData=False)
 
 # POST ROUTES --------------------------------------------
 @app.route("/upload-file", methods=['POST'])

@@ -1,5 +1,5 @@
 def getFile(filename):
-    with open(f"{filename}.sql", "r") as file:
+    with open(f"uploads/{filename}.sql", "r") as file:
         sqlfile = file.readlines()
     return sqlfile
 
@@ -25,7 +25,7 @@ def genTables(sqlfile):
     tables = []
     table = {}
     table['camps'] = []
-    table['primary key'] = ""
+    table['primary_key'] = ""
     campN = ""
     intoTab = False
     for line in sqlfile:    #Analizamos linea por linea
@@ -42,7 +42,7 @@ def genTables(sqlfile):
                 elif char != " ":
                     table['name'] += char
             table['camps'] = []
-            table['primary key'] = ""
+            table['primary_key'] = ""
             intoTab = True
         elif intoTab == True: #leemos los campos
             for char in Pline:
@@ -51,7 +51,7 @@ def genTables(sqlfile):
                     camp = readCamp(campN)
                     table['camps'].append(camp)
                     if "primary key" in campN:
-                            table['primary key'] = camp
+                            table['primary_key'] = camp
                     campN = ""
                     break
                 else:
