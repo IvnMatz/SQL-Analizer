@@ -1,0 +1,19 @@
+*{
+    font-family: sans-serif;
+}
+
+h3{
+    margin-top: 30px;
+}
+table , table *{
+    border: 1px solid black;
+}
+
+.table {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+th, td{
+    padding: 10px;
+}
