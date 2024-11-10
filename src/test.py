@@ -1,7 +1,9 @@
-from readF import genTables, getFile
+from readF import genTables, getFile, getRelations
 
 file = getFile("ex")
 
 tables = genTables(file)
 
-print(tables)
+relations = getRelations(tables)
+
+print(relations)

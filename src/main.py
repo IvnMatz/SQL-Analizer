@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from readF import genTables, getFile
+from readF import genTables, getFile, getRelations
 
 app = Flask(__name__)
 
@@ -9,8 +9,9 @@ def index():
         file = request.form['filename']
         Nfile = getFile(file)
         tables = genTables(Nfile)
-        return render_template('index.html', sqlData=tables)
-    return render_template('index.html', sqlData=False)
+        relations = getRelations(tables)
+        return render_template('index.html', sqlData=tables, relations=relations)
+    return render_template('index.html', sqlData=False, relations=False)
 
 # POST ROUTES --------------------------------------------
 @app.route("/upload-file", methods=['POST'])

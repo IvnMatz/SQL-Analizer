@@ -44,6 +44,17 @@
         </table>
     </div>
     {% endfor %}
+
+    <div class="r">
+        <h3> Relations </h3>
+            {% if relations %}
+            {% for relation in relations %}
+                <h4> {{relation[0]}}  &lt;= {{ relation[2] }} => {{ relation[1] }} </h4>
+            {% endfor %}
+            {%endif%}
+    
+        </div>
+
     {% else %}
         <h3> Ningún archivo usado </h3>
     {%endif%}

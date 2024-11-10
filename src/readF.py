@@ -70,4 +70,26 @@ def genTables(sqlfile):
                         campN = campN + char
     return tables
 
+def getRelations(tables):
+    tables2 = tables
+    relations = []
+    for table in tables:
+        ActualTable = table['name']
+        PK = table['primary_key']
+        print(PK)
+        for table2 in tables2:
+            print(f"{ActualTable} : {table2['name']} ")
+            if table2['name'] == ActualTable:
+                print("SameTable")
+            else:
+                for camp in table2['camps']:
+                    if PK == camp:
+                        print("entra al if")
+                        if PK == table2['primary_key']:
+                            relations.append([f"{ActualTable}.{PK[0]}", f"{table2['name']}.{table2['primary_key'][0]}"], "1:1")
+                        else:
+                            relations.append([f"{ActualTable}.{PK[0]}", f"{table2['name']}.{PK[0]}", "1:M"])
+    return relations
+
+
         
